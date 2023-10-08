@@ -96,6 +96,30 @@ class ZestPaymentSDK {
             throw error;
         }
     }
+    async generateUSSDCode(reference) {
+        const data = JSON.stringify({
+            "ussdRequestType": "USSD_CODE_GENERATION",
+            "reference": reference
+        });
+
+        const config = {
+            method: 'post',
+            maxBodyLength: Infinity,
+            url: `${this.baseUrl}/api/v1/web-engine/process/ussd-request`,
+            headers: {
+                'Api-Public-Key': this.apiPublicKey,
+                'Content-Type': 'application/json'
+            },
+            data: data
+        };
+
+        try {
+            const response = await axios.request(config);
+            return response.data;
+        } catch (error) {
+            throw error;
+        }
+    }
     async getUSSDStatus(reference) {
         let data = JSON.stringify({
             "ussdRequestType": "USSD_STATUS_QUERY",
