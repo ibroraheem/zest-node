@@ -9,7 +9,7 @@
 ### 📦 Installation
 
 ```bash
-npm install zest-node-sdk
+npm install zest-node
 ```
 
 ---
